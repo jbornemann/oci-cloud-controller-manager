@@ -20,7 +20,7 @@
 
 function get-pod-status() {
     # local res=$(kubectl get pods | grep oci-cloud-controller-manager-canary | tail -n 1 | awk '{print $3}')
-    local res=$(kubectl get pod oci-cloud-controller-manager-canary -ojsonpath="{.status.phase}" 2> /dev/null)
+    local res=$(kubectl get pod oci-cloud-controller-manager-canary --show-all -ojsonpath="{.status.phase}" 2> /dev/null)
     echo "${res}"
 }
 
