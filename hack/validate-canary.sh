@@ -48,7 +48,8 @@ function clean-canary() {
     local canary_manifest=${dist_dir}/validate-canary-pod.yaml
     local status=$(get-pod-status) # 'Completed' if finished.
     if [ ! -z "${status}" ]; then
-        kubectl delete -f ${canary_manifest} > /dev/null
+        kubectl delete pod oci-cloud-controller-manager-canary
+        # /kubectl delete -f ${canary_manifest} > /dev/null
         # wait-for-canary-pod-state "Terminating"
         rm -f ${canary_manifest} 
     fi
